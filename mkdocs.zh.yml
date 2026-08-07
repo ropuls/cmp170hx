@@ -1,0 +1,126 @@
+# 中文版站点配置。用法：mkdocs build -f mkdocs.zh.yml
+site_name: CMP 170HX 维基
+site_description: >-
+  NVIDIA CMP 170HX 的全面技术参考：芯片、固件、社区解锁、操作流程与开放前沿。
+docs_dir: docs/zh
+site_dir: ../site-zh
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: green
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: green
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.keys
+
+plugins:
+  - search
+
+nav:
+  - 首页: index.md
+  - 从这里开始:
+      - start/what-is-this-card.md
+      - start/how-to-read-this-wiki.md
+      - start/identify-your-card.md
+      - start/quick-start.md
+      - start/risks.md
+      - start/glossary.md
+  - 硬件:
+      - hardware/overview.md
+      - hardware/ga100-silicon.md
+      - hardware/board-and-variants.md
+      - hardware/memory-subsystem.md
+      - hardware/fuses-and-otp.md
+      - hardware/pcie-subsystem.md
+      - hardware/nvlink-hardware.md
+      - hardware/power-delivery.md
+      - hardware/thermals.md
+      - hardware/vbios.md
+  - 解锁:
+      - unlock/overview.md
+      - unlock/how-it-works.md
+      - unlock/falcon-and-booter.md
+      - unlock/rop-chain.md
+      - unlock/privilege-level-masks.md
+      - unlock/memory-geometry.md
+      - unlock/compute-throttle.md
+      - unlock/driver-patches.md
+      - unlock/pcie-gen2.md
+      - unlock/register-reference.md
+  - 操作流程:
+      - procedures/install.md
+      - procedures/verify.md
+      - procedures/troubleshooting.md
+      - procedures/recovery.md
+      - procedures/multi-gpu.md
+      - procedures/driver-versions.md
+      - procedures/uninstall.md
+  - 运行这张卡:
+      - operations/cooling.md
+      - operations/power-and-psu.md
+      - operations/physical-mods.md
+      - operations/performance.md
+      - operations/llm-inference.md
+      - operations/tuning.md
+  - 前沿:
+      - frontier/status-board.md
+      - frontier/pcie-gen3-gen4.md
+      - frontier/nvlink.md
+      - frontier/ecc.md
+      - frontier/80gb.md
+      - frontier/p2p.md
+      - frontier/open-questions.md
+  - 历史:
+      - history/timeline.md
+      - history/clean-room-and-provenance.md
+      - history/dead-ends.md
+      - history/tool-lineage.md
+  - 附录:
+      - appendix/register-index.md
+      - appendix/artifacts.md
+      - appendix/external-sources.md
+      - appendix/methodology.md
