@@ -1,5 +1,7 @@
 # The CMP 170HX Wiki
 
+**中文版：** [README.zh-CN.md](README.zh-CN.md) · [中文站点](https://github.com/Consensus-Protocol/cmp170hx/tree/main/docs/zh)
+
 A comprehensive technical reference for the NVIDIA CMP 170HX (GA100): silicon, firmware, the
 community unlock, operating procedures, and the open frontier.
 
