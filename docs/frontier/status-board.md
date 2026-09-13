@@ -80,6 +80,11 @@ Shipped, stable, and the only part of the unlock that survives a Function Level 
 > outputs and reported persistent, but it is not in the shipping tree and only the `1g.64gb`
 > profile exists. INT8/IMMA throughput remains gated after the unlock for reasons nobody has
 > explained.
+>
+> Second independent reproduction (610.43.03, 2026-09-13): enable, the sole `1g.64gb` instance,
+> and reboot-survival confirmed. An A/B driver build shows `mig-unlock.patch` raises FP32 SGEMM
+> under MIG ~5.5× (1.85 → 10.2 TFLOP/s) — FP32 throughput only; the INT8/IMMA gate is unaffected.
+> Full report: [MIG](mig.md).
 
 ### Memory geometry
 
