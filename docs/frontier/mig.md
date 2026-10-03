@@ -15,7 +15,7 @@
 
 ## Headline finding
 
-The patch does **not** change profile listing or instance creation — **both work on the cmpunlocker base without `mig-unlock.patch`**. The single observable difference is **sustained compute throughput on the instance**:
+The patch does **not** change profile listing or instance creation — **both work on the cmpunlocker base without `mig-unlock.patch`**. The measured A/B difference is **FP32 SGEMM throughput on the instance**:
 
 | Driver | `mig -lgip` (GI listing) | create `1g.64gb` instance | **cuBLAS SGEMM (8192³ FP32) on the instance** |
 |---|---|---|---|
@@ -28,7 +28,7 @@ So on this driver (610.43.03) the patch raises FP32 SGEMM under MIG by **~5.5×*
 
 ## Test Results
 
-*All `nvidia-smi` output below is verbatim from the run (only the GPU UUID is redacted). Enable / list / create / profile-rejection behave identically on the base and patched drivers — the sole measured difference is the SGEMM throughput in the A/B.*
+*The commands and outputs below are transcribed from the run (the GPU UUID is redacted; repeated rejection lines are abbreviated as `→ ...`). Enable / list / create / profile-rejection behave identically on the base and patched drivers — the only measured difference in the A/B is the SGEMM throughput.*
 
 ### MIG enable + mode
 ```
@@ -85,7 +85,7 @@ SGEMM N=8192 x30: 17831.9 ms -> 1850 GFLOP/s
 ```
 
 ### Partial / multi-instance profiles — not available (base and patched)
-Only `1g.64gb` (whole GPU) is in the RM profile list; every standard A100 profile is rejected. Verbatim:
+Only `1g.64gb` (whole GPU) is in the RM profile list; every standard A100 profile is rejected. First rejection verbatim, the rest abbreviated:
 ```
 $ sudo nvidia-smi mig -cgi 7g.40gb -C
 Unable to create a GPU instance on GPU  0 using profile 7g.40gb: Invalid Argument
