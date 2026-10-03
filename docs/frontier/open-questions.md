@@ -159,8 +159,12 @@ the existing installed base and compare.
 ### 1.5 Is MIG usable on an unlocked card?
 
 The MIG-relevant registers are populated and readable (`FBHUB_MEM_PART_BOT 0x00100b88`,
-`MID 0x00100b8c`, `BOUNDARY_CFG0 0x00100b90`, `SYSMEM_HSHUB_CONNECTION_CFG 0x00100b98`) and the
-fuse survey shows the 170HX has *no* MIG partitioning programmed rather than MIG fused off.
+`MID 0x00100b8c`, `BOUNDARY_CFG0 0x00100b90`, `SYSMEM_HSHUB_CONNECTION_CFG 0x00100b98`). These FBHUB
+memory-partition registers describe the memory side and do not settle the compute-side profile
+limit. New evidence on 610.57.04 places that limit at device enumeration: the hardware device-info
+table lists only GR0, and an inferred syspipe-disable mask (`0x008203a4`) reads `0xfe` and does not
+take host writes. The register-to-engine mapping is not yet validated against an A100. See
+[MIG: root cause](mig.md#root-cause-evidence-for-a-hardware-enumeration-limit-syspipe-fuse-attribution-provisional).
 Separately, a MIG enable via bit 0 of `0x820840` was demonstrated and reported persistent.
 **Already reported once:** on an unlocked card `nvidia-smi mig -lgip` lists exactly one profile,
 `MIG 1g.64gb` (63.00 GiB, 70 SMs), and `nvidia-smi mig -cgi 0` creates it, while a standard A100
